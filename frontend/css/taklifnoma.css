@@ -1,0 +1,244 @@
+/* ============ Taklifnoma sahifasi ============
+   Har bir dizayn 9:16 "sahna" (stage): matn o'rni foizlarda, shrift o'lchami cqw bilan,
+   shuning uchun telefon va kompyuterda bir xil ko'rinadi. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--sahifa-fon);
+  color: var(--matn);
+  font-family: "Cormorant Garamond", "Palatino Linotype", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+[hidden] { display: none !important; }
+
+/* ---------- Dizayn ranglari ---------- */
+body.d-krem {
+  --blok2: #efe2c8;
+  --sahifa-fon: #f6ecd9; --karta: #fbf5e8; --matn: #5c3a22; --yumshoq: #7a5a40;
+  --oltin: #a87e34; --ism: #a87e34; --tugma-fon: #a87e34; --tugma-matn: #fffaf0;
+  --bg: url("../media/krem.jpg");
+}
+
+/* ---------- Sahna ---------- */
+.stage {
+  position: relative;
+  width: min(100vw, 56.25svh);
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--sahifa-fon);
+}
+.stage .bg {
+  position: absolute; inset: 0;
+  background: var(--bg) center / cover no-repeat;
+}
+/* ikat: rasm kartaga yaqinlashtirilgan (video bilan bir xil kadr) */
+.arka, #zarra { display: none; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.txt > * {
+  position: absolute; left: 0; right: 0; margin: 0;
+  text-align: center; translate: 0 -50%;
+  opacity: 0; white-space: nowrap;
+}
+.txt .names { display: flex; justify-content: center; align-items: center; gap: .25em; font-weight: 400; }
+.names .n1, .names .n2, .names .amp { font-family: "Pinyon Script", "Apple Chancery", "URW Chancery L", cursive; color: var(--ism); }
+
+/* qaysi dizaynda nima ko'rinadi */
+.label, .dt { display: none; }
+.d-krem .label, .d-krem .dt { display: none; }
+
+/* matn uslublari */
+.label { font: 300 2.9cqw "Montserrat", system-ui, sans-serif; letter-spacing: .3em; color: var(--yumshoq); }
+.host { font-style: italic; font-size: 5.3cqw; color: var(--matn); }
+.sizni { font-style: italic; font-size: 4.2cqw; color: var(--yumshoq); }
+.invite { font-style: italic; font-size: 4.4cqw; color: var(--matn); }
+.date { font: 400 13.5cqw "Pinyon Script", cursive; color: var(--matn); }
+.time { font: 300 4.2cqw "Montserrat", system-ui, sans-serif; letter-spacing: .28em; text-transform: uppercase; color: var(--matn); }
+.venue { font-size: 5.6cqw; color: var(--matn); }
+.wait { font: 400 6.2cqw "Pinyon Script", cursive; color: var(--oltin); }
+.dt { font-style: italic; font-size: 5cqw; color: var(--matn); }
+.div {
+  left: 0; right: 0; height: 2px; margin-left: auto; margin-right: auto;
+  width: 38%; background: linear-gradient(90deg, transparent 0, var(--oltin) 18%, var(--oltin) 42%, transparent 42.5%, transparent 57.5%, var(--oltin) 58%, var(--oltin) 82%, transparent 100%);
+}
+.div::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 1.2cqw; height: 1.2cqw;
+  background: var(--oltin); transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* --- krem: joylashuv --- */
+.d-krem .host { top: 25.8%; }
+.d-krem .sizni { top: 30.6%; }
+.d-krem .names { top: 37.7%; font-size: 12.2cqw; }
+.d-krem .invite { top: 44.2%; }
+.d-krem .div { top: 51.2%; }
+.d-krem .date { top: 57.4%; }
+.d-krem .time { top: 63.9%; }
+.d-krem .venue { top: 70.2%; }
+.d-krem .wait { top: 78.5%; }
+.d-krem .names .amp { font-size: 1em; }
+
+/* --- ikat: karta ichida ustma-ust --- */
+
+/* --- milliy: arka ichida --- */
+
+/* ---------- Matn paydo bo'lishi (ochilgandan keyin) ---------- */
+@keyframes chiqish {
+  from { opacity: 0; translate: 0 calc(-50% + 14px); }
+  to   { opacity: 1; translate: 0 -50%; }
+}
+body.open .txt > * { animation: chiqish .9s ease-out forwards; }
+body.open .label { animation-delay: .8s; }
+body.open .host { animation-delay: 1.0s; }
+body.open .sizni { animation-delay: 1.7s; }
+body.open .names { animation-delay: 1.4s; }
+body.open .invite { animation-delay: 2.6s; }
+body.open .div { animation-delay: 3.4s; }
+body.open .date { animation-delay: 3.8s; }
+body.open .time { animation-delay: 4.6s; }
+body.open .dt { animation-delay: 2.4s; }
+body.open .venue { animation-delay: 5.4s; }
+body.open .wait { animation-delay: 6.8s; }
+
+/* ---------- Pastdagi bo'limlar ---------- */
+.surish { position: absolute; left: 50%; bottom: 2.2%; width: 22px; height: 36px; margin-left: -11px; border: 1.5px solid var(--oltin); border-radius: 12px; opacity: 0; }
+.surish span { position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: var(--oltin); animation: tomchi 1.6s ease-in-out infinite; }
+body.open .surish { animation: kir 1s 8s forwards; }
+@keyframes kir { to { opacity: .85; } }
+@keyframes tomchi { 0% { translate: 0 0; opacity: 1; } 100% { translate: 0 12px; opacity: 0; } }
+
+.blok { background: var(--sahifa-fon); padding: 64px max(22px, env(safe-area-inset-left, 0px)) 64px max(22px, env(safe-area-inset-right, 0px)); text-align: center; }
+.blok.b2 { background: var(--blok2); }
+.ichki { max-width: 420px; margin: 0 auto; }
+.kicker { font: 300 12px "Montserrat", system-ui, sans-serif; letter-spacing: .28em; text-transform: uppercase; color: var(--yumshoq); margin: 0 0 14px; }
+.sarlavha { font: 400 44px/1.1 "Pinyon Script", "Apple Chancery", cursive; color: var(--ism); margin: 0 0 22px; text-wrap: balance; }
+.div.statik { display: block; position: relative; margin: 0 auto 18px; opacity: 1; translate: none; }
+
+/* taqvim */
+.taqvim { margin: 0 auto; max-width: 340px; padding: 18px 14px 16px; border-radius: 18px; background: var(--karta); border: 1px solid color-mix(in srgb, var(--oltin) 50%, transparent); }
+.taqvim .oy { margin: 0 0 10px; font: 500 26px "Cormorant Garamond", Georgia, serif; color: var(--matn); text-transform: capitalize; }
+.hafta, .kunlar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.hafta span { font: 300 11px "Montserrat", system-ui, sans-serif; color: var(--yumshoq); letter-spacing: .06em; padding: 4px 0; }
+.kunlar span { display: grid; place-items: center; aspect-ratio: 1; font: 500 18px "Cormorant Garamond", Georgia, serif; color: var(--matn); position: relative; }
+.kunlar .tanlangan { color: #fffaf0; font-weight: 600; z-index: 0; }
+.kunlar .tanlangan::before { content: ""; position: absolute; inset: 2px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #e7c36f, #b88a35 75%); z-index: -1; box-shadow: 0 0 0 0 color-mix(in srgb, var(--oltin) 55%, transparent); }
+body.js .korin .tanlangan::before { animation: kunPuls 2.4s ease-out 1s infinite; }
+@keyframes kunPuls { 70%, 100% { box-shadow: 0 0 0 12px transparent; } }
+.hk { margin: 16px 0 0; font-style: italic; font-size: 22px; color: var(--yumshoq); }
+
+/* o'yin: qochuvchi tugmalar */
+.maslahat { margin: -8px 0 16px; font-style: italic; font-size: 19px; color: var(--yumshoq); }
+.kunlar button, .soatlar button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.kunlar button { display: grid; place-items: center; aspect-ratio: 1; font: 500 18px "Cormorant Garamond", Georgia, serif; color: var(--matn); position: relative; transition: translate .28s cubic-bezier(.3, 1.6, .5, 1), rotate .28s; touch-action: manipulation; }
+.kunlar button.qochgan { color: var(--yumshoq); z-index: 2; }
+.kunlar button.togri { color: #fffaf0; font-weight: 600; z-index: 0; }
+.kunlar button.togri::before { content: ""; position: absolute; inset: 2px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #e7c36f, #b88a35 75%); z-index: -1; }
+body.js .kunlar button.togri::before { animation: kunPuls 2.4s ease-out 1s infinite; }
+.qadam { margin-top: 26px; animation: kirish .6s ease-out; }
+@keyframes kirish { from { opacity: 0; translate: 0 16px; } }
+.soatlar { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 320px; margin: 0 auto; }
+.soatlar button { padding: 12px 0; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--oltin) 55%, transparent); background: var(--karta); font: 500 22px "Cormorant Garamond", Georgia, serif; color: var(--matn); transition: translate .28s cubic-bezier(.3, 1.6, .5, 1), rotate .28s; touch-action: manipulation; }
+.soatlar button.togri { background: var(--tugma-fon); color: var(--tugma-matn); border-color: var(--tugma-fon); }
+.javoblar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.javoblar button { border: 0; cursor: pointer; }
+.javoblar .ikki { border: 1px solid var(--oltin); }
+.rahmat { margin: 18px 0 0; font: 400 30px/1.2 "Pinyon Script", "Apple Chancery", cursive; color: var(--ism); }
+.d-ikat .rahmat { color: var(--oltin); }
+
+/* tabrik */
+.tabrik { font-size: 22px; line-height: 1.5; margin: 0 0 18px; color: var(--matn); text-wrap: pretty; }
+.imzo { font: 400 36px "Pinyon Script", "Apple Chancery", cursive; color: var(--ism); margin: 0; }
+
+/* qachon va qayerda */
+.soat { display: inline-flex; align-items: center; gap: 12px; margin: 4px 0 18px; color: var(--oltin); }
+.soat svg { width: 38px; height: 38px; }
+.soat b { font: 500 44px/1 "Cormorant Garamond", Georgia, serif; color: var(--matn); font-variant-numeric: tabular-nums; }
+.joy-nom { font-size: 28px; margin: 0 0 4px; color: var(--matn); }
+.joy-manzil { margin: 0 0 18px; color: var(--yumshoq); font-size: 18px; }
+.joy-manzil:empty { display: none; }
+.tugma {
+  display: inline-block; padding: 14px 26px; border-radius: 999px; text-decoration: none;
+  background: var(--tugma-fon); color: var(--tugma-matn);
+  font: 400 14px "Montserrat", system-ui, sans-serif; letter-spacing: .06em;
+}
+.tugma:active { transform: scale(.98); }
+
+/* taymer */
+.taymer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 auto 8px; max-width: 360px; }
+.taymer > div { background: var(--karta); border: 1px solid color-mix(in srgb, var(--oltin) 45%, transparent); border-radius: 14px; padding: 14px 4px 10px; }
+.taymer b { display: block; font: 500 34px/1 "Cormorant Garamond", Georgia, serif; color: var(--matn); font-variant-numeric: tabular-nums; }
+.taymer span { font: 300 11px "Montserrat", system-ui, sans-serif; letter-spacing: .1em; color: var(--yumshoq); }
+.holat { font-style: italic; color: var(--yumshoq); margin: 8px 0 0; }
+
+/* yakun */
+.blok.yakun { padding-bottom: 40px; }
+.yakun-matn { font: 400 40px/1.15 "Pinyon Script", "Apple Chancery", cursive; color: var(--ism); margin: 0 0 12px; }
+.yakun-oila { font-style: italic; font-size: 22px; color: var(--matn); margin: 0; }
+.pastki { margin: 46px 0 0; font: 300 11px "Montserrat", system-ui, sans-serif; letter-spacing: .3em; text-transform: uppercase; color: var(--yumshoq); opacity: .7; }
+
+/* reklama */
+.reklama { padding-bottom: 96px; }
+.rvideo { width: min(100%, 260px); aspect-ratio: 9 / 16; margin: 0 auto 22px; border-radius: 18px; overflow: hidden; background: #000; border: 1px solid color-mix(in srgb, var(--oltin) 55%, transparent); box-shadow: 0 10px 30px rgba(0, 0, 0, .25); }
+.rvideo video { width: 100%; height: 100%; display: block; object-fit: cover; }
+.rmatn { font-size: 20px; line-height: 1.45; color: var(--matn); margin: 0 0 16px; text-wrap: pretty; }
+.rbog { margin: 22px 0 10px; font: 300 12px "Montserrat", system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--yumshoq); }
+.tugma.ikki { background: transparent; color: var(--matn); border: 1px solid var(--oltin); }
+
+/* kirish animatsiyasi */
+body.js .rv { opacity: 0; translate: 0 26px; transition: opacity .9s ease-out, translate .9s ease-out; }
+body.js .rv.korin { opacity: 1; translate: 0 0; }
+
+/* ---------- Musiqa tugmasi ---------- */
+.musiqa {
+  position: fixed; right: 14px; top: calc(14px + env(safe-area-inset-top)); z-index: 5;
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--oltin);
+  background: color-mix(in srgb, var(--karta) 88%, transparent); color: var(--oltin);
+  font-size: 20px; cursor: pointer; backdrop-filter: blur(6px);
+}
+.musiqa.ochiq { animation: puls 2.2s ease-in-out infinite; }
+@keyframes puls { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--oltin) 25%, transparent); } }
+
+/* ---------- Ochilish (eshik) ---------- */
+#intro { position: fixed; inset: 0; z-index: 20; }
+#intro .half {
+  position: absolute; inset: 0; transition: transform 1.5s cubic-bezier(.65, 0, .25, 1);
+  background: var(--bg) center / cover no-repeat, var(--sahifa-fon);
+}
+#intro .l { clip-path: inset(0 50% 0 0); }
+#intro .r { clip-path: inset(0 0 0 50%); }
+#intro::after { /* o'rtadagi oltin chiziq */
+  content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px;
+  background: linear-gradient(180deg, transparent, #e6c67a 20%, #e6c67a 80%, transparent);
+  transition: opacity .5s;
+}
+#ochish {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2;
+  border: 0; background: none; cursor: pointer; text-align: center; color: #5c3a22;
+  transition: opacity .4s;
+}
+#ochish .muhr {
+  display: grid; place-items: center; margin: 0 auto 14px; width: 74px; height: 74px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f3dc9f, #c39a45 70%); color: #fffaf0;
+  font: 600 26px "Pinyon Script", "Apple Chancery", cursive; box-shadow: 0 6px 22px rgba(80, 50, 10, .35);
+  animation: urish 1.8s ease-in-out infinite;
+}
+@keyframes urish { 50% { transform: scale(1.08); } }
+#ochish .yozuv {
+  display: inline-block; padding: 8px 16px; border-radius: 999px;
+  background: rgba(255, 250, 240, .78); color: #5c3a22;
+  font: 400 12px "Montserrat", system-ui, sans-serif; letter-spacing: .22em; text-transform: uppercase;
+}
+body.open #ochish, body.open #intro::after { opacity: 0; pointer-events: none; }
+body.open #intro .l { transform: translateX(-100%); }
+body.open #intro .r { transform: translateX(100%); }
+
+.xato { text-align: center; padding: 40vh 24px 0; font-size: 22px; color: var(--matn); }
+
+@media (prefers-reduced-motion: reduce) {
+  body.open .txt > * { animation-duration: .01s; animation-delay: 0s !important; }
+  #intro .half { transition-duration: .01s; }
+  #ochish .muhr, .musiqa.ochiq, .surish span, .kunlar .tanlangan::before { animation: none !important; }
+  body.js .rv { transition-duration: .01s; }
+}

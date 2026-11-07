@@ -1,0 +1,12 @@
+{
+  "name": "nafis-taklifnoma-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nafis Taklifnoma: taklifnoma ma'lumotlari uchun API (tashqi kutubxonasiz)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": { "node": ">=20" }
+}

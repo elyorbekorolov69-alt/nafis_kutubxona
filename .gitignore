@@ -1,0 +1,6 @@
+.env
+*.env.local
+node_modules/
+data.json
+__pycache__/
+.DS_Store

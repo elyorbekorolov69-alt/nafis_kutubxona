@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6ecd9">
+<title>Taklifnoma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/taklifnoma.css">
+</head>
+<body class="d-krem">
+<script>document.body.classList.add("js");</script>
+
+<!-- Ochilish: ikkiga bo'linadigan eshik -->
+<div id="intro" aria-live="polite">
+  <div class="half l"></div>
+  <div class="half r"></div>
+  <button id="ochish" type="button">
+    <span class="muhr">♡</span>
+    <span class="yozuv">Taklifnomani ochish</span>
+  </button>
+</div>
+
+<main id="sahifa" hidden>
+
+  <!-- 1. Birinchi ekran: ismlar -->
+  <section class="stage" id="stage">
+    <div class="bg"></div>
+    <div class="txt">
+      <p class="host" id="oila"></p>
+      <p class="sizni">sizni</p>
+      <h1 class="names" id="ismlar"><span class="n1" id="kelin"></span><span class="amp">&amp;</span><span class="n2" id="kuyov"></span></h1>
+      <p class="invite">to‘y marosimiga taklif qiladi</p>
+      <i class="div" aria-hidden="true"></i>
+      <p class="date" id="sana"></p>
+      <p class="time" id="vaqt"></p>
+      <p class="venue" id="joy"></p>
+      <p class="wait" id="izoh"></p>
+    </div>
+    <div class="surish" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- 2. Taqvim -->
+  <section class="blok b1">
+    <div class="ichki rv">
+      <p class="kicker">Sana</p>
+      <h2 class="sarlavha">To‘y kunini toping</h2>
+      <p class="maslahat" id="maslahat">To‘g‘ri kunni bosing. Boshqa kunlar qochib ketadi!</p>
+      <div class="taqvim">
+        <p class="oy" id="oy-nomi"></p>
+        <div class="hafta" aria-hidden="true"><span>Du</span><span>Se</span><span>Ch</span><span>Pa</span><span>Ju</span><span>Sh</span><span>Ya</span></div>
+        <div class="kunlar" id="kunlar"></div>
+      </div>
+      <p class="hk" id="hafta-kuni" hidden></p>
+      <div class="qadam" id="vaqt-blok" hidden>
+        <p class="maslahat">Endi soatni toping:</p>
+        <div class="soatlar" id="soatlar"></div>
+      </div>
+      <div class="qadam" id="javob-blok" hidden>
+        <p class="maslahat">Tashrif buyurasizmi?</p>
+        <div class="javoblar">
+          <button type="button" class="tugma" id="kelaman">Kelaman ✅</button>
+          <button type="button" class="tugma ikki" id="kelolmayman">Kela olmayman</button>
+        </div>
+        <p class="rahmat" id="rahmat" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Tabrik matni -->
+  <section class="blok b2">
+    <div class="ichki rv">
+      <i class="div statik" aria-hidden="true"></i>
+      <h2 class="sarlavha">Aziz mehmonlar!</h2>
+      <p class="tabrik" id="matn"></p>
+      <p class="imzo" id="imzo"></p>
+    </div>
+  </section>
+
+  <!-- 4. Qachon va qayerda -->
+  <section class="blok b1">
+    <div class="ichki rv">
+      <p class="kicker">Qachon va qayerda</p>
+      <div class="soat">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2"/><path d="M24 12v13l8 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b id="soat-vaqt"></b>
+      </div>
+      <p class="joy-nom" id="joy2"></p>
+      <p class="joy-manzil" id="manzil"></p>
+      <a class="tugma" id="xarita" href="#" target="_blank" rel="noopener">📍 Xaritada ochish</a>
+    </div>
+  </section>
+
+  <!-- 5. To'ygacha -->
+  <section class="blok b2">
+    <div class="ichki rv">
+      <p class="kicker">To‘y marosimigacha</p>
+      <div class="taymer" id="taymer" aria-live="off">
+        <div><b id="t-kun">0</b><span>kun</span></div>
+        <div><b id="t-soat">0</b><span>soat</span></div>
+        <div><b id="t-daq">0</b><span>daqiqa</span></div>
+        <div><b id="t-son">0</b><span>soniya</span></div>
+      </div>
+      <p class="holat" id="holat"></p>
+    </div>
+  </section>
+
+  <!-- 6. Yakun -->
+  <section class="blok yakun">
+    <div class="ichki rv">
+      <p class="yakun-matn" id="yakun-matn"></p>
+      <p class="yakun-oila" id="yakun-oila"></p>
+      <p class="pastki">Nafis Taklifnoma</p>
+    </div>
+  </section>
+
+  <!-- 7. Reklama / bog'lanish -->
+  <section class="blok b2 reklama">
+    <div class="ichki rv">
+      <p class="kicker">Nafis Taklifnoma</p>
+      <h2 class="sarlavha">Sizga ham shunday taklifnoma kerakmi?</h2>
+      <div class="rvideo">
+        <video id="reklama" src="media/reklama.mp4" poster="media/reklama.jpg" playsinline preload="none" controls></video>
+      </div>
+      <p class="rmatn">Onlayn to‘y taklifnomangizni biz tayyorlaymiz: havola, xarita, taymer va musiqa bilan. Botimizga yozing:</p>
+      <a class="tugma" href="https://t.me/nafis_taklifnomabot" target="_blank" rel="noopener">🤖 @nafis_taklifnomabot</a>
+      <p class="rbog">Bog‘lanish uchun:</p>
+      <a class="tugma ikki" href="https://t.me/Urolov20_05" target="_blank" rel="noopener">✈️ @Urolov20_05</a>
+    </div>
+  </section>
+
+  <button id="musiqa-tugma" class="musiqa" type="button" aria-label="Musiqa" hidden>♪</button>
+  <audio id="bgm" src="media/musiqa.mp3" loop preload="none"></audio>
+</main>
+
+<p id="xato" class="xato" hidden>Taklifnoma topilmadi. Havolani tekshiring.</p>
+
+<script src="js/config.js"></script>
+<script src="js/taklifnoma.js"></script>
+</body>
+</html>

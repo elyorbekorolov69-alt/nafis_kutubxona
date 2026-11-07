@@ -1,0 +1,23 @@
+# Render Blueprint: backend (API) ni serverga joylashtirish.
+# Render'da: New → Blueprint → shu repozitoriyani tanlang.
+# ADMIN_KEY, FRONTEND_URL, SUPABASE_URL, SUPABASE_KEY ni Render panelida qo'lda kiriting (maxfiy).
+
+services:
+  - type: web
+    name: nafis-taklifnoma
+    runtime: node
+    rootDir: backend
+    buildCommand: echo "kutubxona o'rnatish shart emas"
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: ADMIN_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
